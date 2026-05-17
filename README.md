@@ -28,10 +28,9 @@ Demo first:
 
 - [video/demo.github.mp4](video/demo.github.mp4)
 - [video/compile.github.mp4](video/compile.github.mp4)
+- Preview: [video/demo.preview.webp](video/demo.preview.webp)
 
-<video src="video/demo.github.mp4" controls muted playsinline width="900"></video>
-
-<video src="video/compile.github.mp4" controls muted playsinline width="900"></video>
+[![Demo preview (click to open MP4)](video/demo.preview.webp)](video/demo.github.mp4)
 
 If inline playback does not appear in your GitHub view, open the files directly:
 
