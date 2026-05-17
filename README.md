@@ -6,16 +6,37 @@ This repo contains [code/4rl2026.pas](code/4rl2026.pas), a bug-fixed (2026) copy
 
 I wrote this as my second demo ever. It is rough, direct, and very much in the style of late-90s Mode 13h experiments.
 
+## Copyright and License
+
+Copyright (c) 1998-2026 4ReAL.
+
+This project is licensed under the GNU Affero General Public License v3.0 (AGPL-3.0).
+
+AGPL requires preserving copyright/license notices and making source code available for distributed/modified versions (including software provided over a network).
+
+Full terms: [LICENSE](LICENSE)
+
+Author request (not an additional legal term):
+
+- Please credit Christo Greeff in substantial reuse.
+- Please clearly note what you changed.
+- Please inform me of public usage or major changes by opening an issue in this repository.
+
 ## Videos
 
 Demo first:
 
-- [video/demo.mp4](video/demo.mp4)
-- [video/compile.mp4](video/compile.mp4)
+- [video/demo.github.mp4](video/demo.github.mp4)
+- [video/compile.github.mp4](video/compile.github.mp4)
 
-<video src="video/demo.mp4" controls muted playsinline width="900"></video>
+<video src="video/demo.github.mp4" controls muted playsinline width="900"></video>
 
-<video src="video/compile.mp4" controls muted playsinline width="900"></video>
+<video src="video/compile.github.mp4" controls muted playsinline width="900"></video>
+
+If inline playback does not appear in your GitHub view, open the files directly:
+
+- [Demo video](video/demo.github.mp4)
+- [Compile video](video/compile.github.mp4)
 
 ## What The Demo Does (from source)
 
