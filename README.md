@@ -26,16 +26,18 @@ Author request (not an additional legal term):
 
 Demo first:
 
-- [video/demo.github.mp4](video/demo.github.mp4)
-- [video/compile.github.mp4](video/compile.github.mp4)
-- Preview: [video/demo.preview.webp](video/demo.preview.webp)
+- Full video link (about 10 MB): [video/demo.10mb.mp4](video/demo.10mb.mp4)
+- Full-length compile WebP: [video/compile.full.webp](video/compile.full.webp)
+- Demo README preview (35s-44s): [video/demo.preview.webp](video/demo.preview.webp)
 
-[![Demo preview (click to open MP4)](video/demo.preview.webp)](video/demo.github.mp4)
+[![Demo preview (35s-44s, click for full video)](video/demo.preview.webp)](video/demo.10mb.mp4)
+
+[![Compile full-length WebP](video/compile.full.webp)](video/compile.mp4)
 
 If inline playback does not appear in your GitHub view, open the files directly:
 
-- [Demo video](video/demo.github.mp4)
-- [Compile video](video/compile.github.mp4)
+- [Demo full video](video/demo.10mb.mp4)
+- [Compile video](video/compile.mp4)
 
 ## What The Demo Does (from source)
 
