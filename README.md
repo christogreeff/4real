@@ -27,17 +27,10 @@ Author request (not an additional legal term):
 Demo first:
 
 - Full video link (about 10 MB): [video/demo.10mb.mp4](video/demo.10mb.mp4)
-- Full-length compile WebP: [video/compile.full.webp](video/compile.full.webp)
-- Demo README preview (35s-44s): [video/demo.preview.webp](video/demo.preview.webp)
 
 [![Demo preview (35s-44s, click for full video)](video/demo.preview.webp)](video/demo.10mb.mp4)
 
 [![Compile full-length WebP](video/compile.full.webp)](video/compile.mp4)
-
-If inline playback does not appear in your GitHub view, open the files directly:
-
-- [Demo full video](video/demo.10mb.mp4)
-- [Compile video](video/compile.mp4)
 
 ## What The Demo Does (from source)
 
@@ -61,24 +54,79 @@ I wrote a FONTMAKE.PAS tool to build my own fonts using mouse input and Turbo Pa
 
 That tool is not included in this repo right now, but the generated font is loaded by the demo as 4real.fnt.
 
-From the available source, the font data layout is a Turbo Pascal typed-record style binary structure for ASCII 43..90, with 64 bytes (8x8) per character.
+Inferred from [code/4rl2026.pas](code/4rl2026.pas): the font file is a typed-record dump with glyph bits stored for ASCII 43..90, 64 bytes per glyph (8x8).
+
+```pascal
+Type
+ Letters = Record
+  No : Array [43..90,1..64] Of Byte
+ End;
+
+Procedure LoadFont(S : String; Var L : LetPtr);
+Var
+ F : File Of Letters;
+Begin
+ Assign(F,S);
+ Reset(F);
+ Read(F,L^);
+ Close(F);
+End;
+```
+
+Technical note: there is no per-file header/version in this loader path; structure compatibility depends on the exact Pascal record layout.
 
 ### GOLF.4RI
 
 I do not currently remember the original conversion pipeline used in 1998.
+
+The source image was a VW Golf model, likely a [Volkswagen Golf Mk3](https://en.wikipedia.org/wiki/Volkswagen_Golf_Mk3).
 
 From [code/4rl2026.pas](code/4rl2026.pas), the file appears to be read as a raw typed record containing:
 
 - Indexed pixel data: 260x160 bytes
 - Palette: 256 entries x RGB (3 bytes)
 
+Technical note: this maps to a fixed-size packed block of 42,368 bytes in Turbo Pascal record order (pixel indices first, then palette), with no explicit headers shown in the loader.
+
+```pascal
+Type
+ Img = Record
+  Pic : Array[1..260,1..160] Of Byte;
+  Pl  : Array[0..255,0..2] Of Byte;
+ End;
+
+Assign(PicF,'Golf.4ri');
+Reset(PicF);
+Read(PicF,Pic^);
+Close(PicF);
+```
+
+Technical note: rendering uses palette indices directly and then applies sine-based coordinate warping over the loaded pixel buffer.
+
 ### OBJ.3D
 
 I do not currently remember the exact export/conversion steps either.
 
-I might have used 3ds Max 2.5 at the time.
+I might have used 3ds Max 2.5 at the time (retro reference: [3D Studio MAX 2.5 video](https://www.youtube.com/watch?v=y8azQEceSJo)).
 
 From [code/4rl2026.pas](code/4rl2026.pas), OBJ.3D appears to be read as a raw typed record of 530 points x 3 coordinates (Real), used as a point cloud for rotation/projection.
+
+Technical note: the loader performs a single typed-record read into memory, then rotates/projects each point directly; there is no face/index list in this effect path, only vertex positions.
+
+```pascal
+Type
+ P = Array[1..530,1..3] Of Real;
+
+Assign(PF,'OBJ.3d');
+Reset(PF);
+Read(PF,Pts^);
+Close(PF);
+
+For I := 1 to 530 do
+ RotateProjection(Pts^[I,1],Pts^[I,2],Pts^[I,3],8,8,8,Xp,Yp,Xc,Yc,Zo);
+```
+
+Technical note: this is a direct binary ingest path, so changing Pascal Real size/compiler mode can break cross-tool compatibility.
 
 ## Source Credits
 
